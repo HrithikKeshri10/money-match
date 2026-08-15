@@ -1,56 +1,46 @@
-# Welcome to your Expo app 👋
+# Money Match
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A 60-second finance challenge built for **BlinkMoney**, a fast, single-player quiz where every question is a real BlinkMoney decision (sell vs. borrow, hold through a dip, let it compound). Play trains the exact behaviours BlinkMoney wants its users to internalise, and a shareable result card turns a private habit into something worth passing on.
 
-## Get started
+**Live prototype:** https://money-match-gamma.vercel.app (opens in any browser, no login)
 
-1. Install dependencies
+---
 
-   ```bash
-   npm install
-   ```
+## The feature
 
-2. Start the app
+Four screens, one tight loop:
 
-   ```bash
-   npx expo start
-   ```
+- **Start** — best score, current streak, one tap to play.
+- **Quiz** — a draining 60-second timer, live score and combo streak, scenario questions with four options each. Instant correct/wrong feedback, then advance.
+- **Result** — final score, a finance rank (Rookie → Money Master), XP earned, and whether you beat your best.
+- **Share** — a designed result card ("I scored 570 · Saver") with a share sheet (WhatsApp / X / IG Story / Save image) so a win spreads without being asked.
 
-In the output, you'll find options to open the app in a
+Questions are drawn from BlinkMoney's core logic — sell vs. borrow, holding through a market dip, compounding — so a round doubles as low-stakes practice for the decisions the product is built around.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+---
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## Tech stack
 
-## Get a fresh project
+- **Expo / React Native** — single codebase, runs on Android and web.
+- **react-native-web** — powers the public browser prototype (deployed on Vercel).
+- **react-native-reanimated** — timer drain, answer feedback, score count-up.
+- **AsyncStorage** — persists best score, streak, and XP across sessions.
 
-When you're ready, run:
+---
+
+## Run locally
 
 ```bash
-npm run reset-project
+git clone https://github.com/HrithikKeshri10/money-match.git
+cd money-match
+npm install
+
+# start the dev server
+npx expo start          # then press a for Android, or w for web
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+---
 
-### Other setup steps
+## Mocked data (deliberate)
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+This is a frontend prototype with no backend. Best score (1,240), streak (2 days), and the "top 25% this week" line are seeded stubs to demonstrate the states. In production these would read from the user's play history and a leaderboard service.
